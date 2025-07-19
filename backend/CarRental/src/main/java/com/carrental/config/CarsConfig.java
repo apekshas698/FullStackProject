@@ -15,9 +15,9 @@ public class CarsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:5173",
-                                "https://carrental-frontend-ubq2.onrender.com"
+                                "https://carrental-frontend-ubq2.onrender.com",
+                                "https://joyful-starburst-300df3.netlify.app" // ✅ ADD THIS
                         )
-
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
