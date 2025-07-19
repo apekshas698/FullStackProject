@@ -10,12 +10,12 @@ const CarList = () => {
   useEffect(() => {
     axios.get("/api/cars")
       .then((res) => {
-        console.log("API response:", res.data); // ✅ Check in console
+        console.log("API response:", res.data);
         if (Array.isArray(res.data)) {
           setCars(res.data);
         } else {
           console.error("Expected array, got:", res.data);
-          setCars([]); // fallback to empty
+          setCars([]);
         }
       })
       .catch((error) => {
@@ -25,13 +25,14 @@ const CarList = () => {
   }, []);
 
   const filteredCars = cars
-    ?.filter((car) =>
-      car.name?.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    .filter((car) => {
+      const name = typeof car.name === "string" ? car.name : "";
+      return name.toLowerCase().includes(searchTerm.toLowerCase());
+    })
     .sort((a, b) => (sortOrder === "asc" ? a.price - b.price : b.price - a.price));
 
   const getImageSrc = (image) => {
-    if (!image) return "/images/default-car.jpg";
+    if (typeof image !== "string") return "/images/default-car.jpg";
     return image.startsWith("http") ? image : `/images/${image}`;
   };
 
@@ -57,29 +58,35 @@ const CarList = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {filteredCars?.map((car, index) => (
-            <div
-              key={car.id || index}
-              className="border rounded p-4 text-center bg-white dark:bg-gray-800 dark:border-gray-600 shadow"
-            >
-              <img
-                src={getImageSrc(car.image)}
-                alt={car.name}
-                className="w-full h-40 object-cover mb-2 rounded"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "/images/default-car.jpg";
-                }}
-              />
-              <h3 className="font-bold text-lg">{car.name}</h3>
-              <p className="mb-3">₹{car.price}/day</p>
-              <Link to={`/book/${car.id}`}>
-                <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded transition">
-                  Book Now
-                </button>
-              </Link>
-            </div>
-          ))}
+          {filteredCars.map((car, index) => {
+            const name = typeof car.name === "string" ? car.name : "Unnamed Car";
+            const price = typeof car.price === "number" ? car.price : 0;
+            const id = typeof car.id === "string" ? car.id : car._id || index;
+
+            return (
+              <div
+                key={id}
+                className="border rounded p-4 text-center bg-white dark:bg-gray-800 dark:border-gray-600 shadow"
+              >
+                <img
+                  src={getImageSrc(car.image)}
+                  alt={name}
+                  className="w-full h-40 object-cover mb-2 rounded"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/images/default-car.jpg";
+                  }}
+                />
+                <h3 className="font-bold text-lg">{name}</h3>
+                <p className="mb-3">₹{price}/day</p>
+                <Link to={`/book/${id}`}>
+                  <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded transition">
+                    Book Now
+                  </button>
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
