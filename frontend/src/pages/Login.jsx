@@ -10,19 +10,21 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // clear previous errors
+
     try {
       const res = await axios.post("/api/auth/login", { email, password });
 
       const { token, role } = res.data;
 
-      // ✅ Store token and role in localStorage
+      // Save to localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("user", JSON.stringify({ isAuthenticated: true, role }));
 
       alert("✅ Logged in successfully!");
 
-      // ✅ Redirect based on role
+      // Redirect based on role
       if (role === "ADMIN") {
         navigate("/admin");
       } else {
@@ -30,8 +32,8 @@ const Login = () => {
       }
 
     } catch (err) {
-      console.error("Login failed", err);
-      setError("❌ Invalid credentials");
+      console.error("Login failed:", err.response?.data || err.message);
+      setError("❌ Invalid credentials. Please try again.");
     }
   };
 
@@ -75,4 +77,3 @@ const Login = () => {
 };
 
 export default Login;
- 

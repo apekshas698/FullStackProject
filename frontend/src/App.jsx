@@ -15,14 +15,13 @@ import Footer from './Components/Footer/Footer';
 import BookCar from './pages/BookCar';
 import BookingList from './pages/BookingList';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import Login from './pages/Login'; // ✅ Make sure this file exists
-import ProtectedAdminRoute from './routes/ProtectedAdminRoute'; // ✅ Make sure this file exists
+import Login from './pages/Login';
+import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// ✅ Scroll to section when navigating from internal nav links
 const ScrollToSectionWrapper = ({ theme }) => {
   const location = useLocation();
 
@@ -88,9 +87,9 @@ const App = () => {
           <Route path="/bookings" element={<BookingList />} />
           <Route path="/login" element={<Login />} />
 
-          {/* ✅ Admin route protected by role check */}
+          {/* ✅ Admin route protected */}
           <Route
-            path="/admin"
+            path="/admin/*"
             element={
               <ProtectedAdminRoute>
                 <AdminDashboard />
