@@ -1,14 +1,14 @@
-# Use OpenJDK 17 base image
+# Use OpenJDK 17 as the base image
 FROM openjdk:17
 
-# Set working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy all project files to the container's working directory
+# Copy the entire project into the container's /app directory
 COPY . .
 
-# Make Maven wrapper executable and build the project, skipping tests
+# Give execute permission to the Maven wrapper and build the project without running tests
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
-# Run the Spring Boot application JAR
+# Specify the command to run the JAR file
 CMD ["java", "-jar", "target/CarRental-0.0.1-SNAPSHOT.jar"]
