@@ -123,7 +123,6 @@ This project is licensed under the MIT License.
 
 **Apeksha Shukla**  
 - GitHub: [@apekshas698](https://github.com/apekshas698)  
-- Portfolio: *Coming Soon*
 
 ---
 
