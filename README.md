@@ -15,7 +15,7 @@ A complete Full Stack Car Rental web application built using **Spring Boot**, **
 - Redux for State Management
 - Axios for API calls
 - React Router
-- Tailwind CSS / Custom CSS
+- Tailwind CSS 
 
 ### Deployment
 - **Frontend**: Deployed via **Netlify**
