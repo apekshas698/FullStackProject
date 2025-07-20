@@ -108,8 +108,8 @@ cd FullStackProject
 
 ## 🌐 Live Demo
 
-- **Frontend**: [Netlify App](https://your-netlify-url.netlify.app)
-- **Backend**: [Render Backend](https://your-backend-url.onrender.com)
+- **Frontend**: [Netlify App](https://joyful-starburst-300df3.netlify.app/)
+- **Backend**: [Render Backend](https://car-rental-backend-81ma.onrender.com)
 
 ---
 
