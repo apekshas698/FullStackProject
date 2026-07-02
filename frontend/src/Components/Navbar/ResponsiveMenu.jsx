@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { scroller } from 'react-scroll';
@@ -50,8 +50,6 @@ const ResponsiveMenu = ({ showMenu, toggleMenu }) => {
   return (
     <div className="fixed top-0 left-0 z-50 bg-white dark:bg-gray-900 h-screen w-[75%] 
       md:hidden rounded-r-xl shadow-md flex flex-col justify-between px-8 pb-6 pt-16 transition-all duration-300">
-      
-      {/* User Info */}
       <div className="flex items-center gap-3">
         <FaUserCircle size={50} />
         <div>
@@ -59,8 +57,6 @@ const ResponsiveMenu = ({ showMenu, toggleMenu }) => {
           <p className="text-sm text-gray-500">{role ? `${role} User` : "Please login"}</p>
         </div>
       </div>
-
-      {/* Navigation */}
       <nav className="mt-12">
         <ul className="space-y-4 text-xl">
           {navLinks.map((data) => (

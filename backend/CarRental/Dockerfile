@@ -1,14 +1,13 @@
-# Use OpenJDK 17 as the base image
-FROM openjdk:17
-
-# Set the working directory inside the container
+# ---- Build stage ----
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
-
-# Copy the entire project into the container's /app directory
 COPY . .
-
-# Give execute permission to the Maven wrapper and build the project without running tests
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
-# Specify the command to run the JAR file
-CMD ["java", "-jar", "target/CarRental-0.0.1-SNAPSHOT.jar"]
+# ---- Runtime stage ----
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/CarRental-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]

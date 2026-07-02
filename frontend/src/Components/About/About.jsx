@@ -1,4 +1,4 @@
-import React from 'react';
+
 import CarPng from "../../assets/carPic.jpg";
 
 const About = () => {
@@ -10,7 +10,7 @@ const About = () => {
     >
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center gap-8">
-          {/* Left Side - Image */}
+         
           <div data-aos="slide-right" data-aos-duration="1500">
             <img
               src={CarPng}
@@ -19,8 +19,6 @@ const About = () => {
               max-h-[300px] drop-shadow-[2px_10px_6px_rgba(0,0,0,0.50)]"
             />
           </div>
-
-          {/* Right Side - Content */}
           <div className="space-y-6 sm:p-8 text-justify">
             <h1
               data-aos="fade-up"

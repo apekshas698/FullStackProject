@@ -81,8 +81,6 @@ const Navbar = ({ theme, setTheme }) => {
                 )}
               </li>
             ))}
-
-            {/* Auth Buttons */}
             <li className="py-4">
               {isLoggedIn ? (
                 <button
@@ -94,8 +92,6 @@ const Navbar = ({ theme, setTheme }) => {
               ) : null}
             </li>
           </ul>
-
-          {/* Theme + Menu Toggle */}
           <div className="flex items-center gap-4 md:gap-6">
             {theme === "dark" ? (
               <BiSolidSun onClick={() => setTheme("light")} className="text-2xl cursor-pointer" />
@@ -110,8 +106,6 @@ const Navbar = ({ theme, setTheme }) => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Nav */}
       <ResponsiveMenu showMenu={showMenu} toggleMenu={toggleMenu} />
     </nav>
   );
